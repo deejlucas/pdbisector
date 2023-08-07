@@ -20,6 +20,13 @@ def get_max_minor(vrsts, max_major):
     return max(minor_vs)
 
 
+def get_max_patch(vrsts, max_major, max_minor):
+    major_vs = extract_major_versions(vrsts)
+    minor_vs = [int(v.split(".")[1]) for v in vrsts]
+    patch_vs = [int(v.split(".")[2]) for v in [vm for i, vm in enumerate(vrsts) if major_vs[i] == max_major and minor_vs[i] == max_minor]]
+    return max(patch_vs)
+
+
 def get_version_number(install_path):
     """
     Ignores patches
@@ -28,6 +35,5 @@ def get_version_number(install_path):
     vrsts = extract_vrsts(whatsnew_filenames)
     max_major = get_max_major(vrsts)
     max_minor = get_max_minor(vrsts, max_major=max_major)
-    return f"v{max_major}.{max_minor}.0"
-
-
+    max_patch = get_max_patch(vrsts, max_major=max_major, max_minor=max_minor)
+    return f"v{max_major}.{max_minor}.{max_patch}"

@@ -1,6 +1,6 @@
 import os
 
-from . import utils
+from . import parsing, utils
 
 has_versioneer = False
 
@@ -33,3 +33,12 @@ def install_pre_build_dependencies(install_path):
         utils.say_and_do('pip uninstall versioneer -y')
     utils.say_and_do(f"pip install {cython_rqt}")
     utils.say_and_do(f"pip install {np_rqt}")
+
+
+def get_editable_install_command(install_path):
+    version_number = parsing.get_version_number(install_path)
+    if version_number < "v2.0.3":
+        cmd = "pip install -e . --no-build-isolation --no-use-pep517"
+    else:
+        cmd = "python -m pip install -ve . --no-build-isolation --config-settings editable-verbose=true"
+    return cmd

@@ -10,14 +10,14 @@ import subprocess
 import logging
 import shutil
 
-from . import dependencies, utils
+from . import dependencies, parsing, utils
 
 term_old = sys.argv[1]
 old = sys.argv[2] # where script exits 0
 term_new = sys.argv[3]
 new = sys.argv[4]  # where script exits 1
 test_path = sys.argv[5]
-install_path = '~/pandas-bisect-install'
+install_path = '../pandas-bisect-install'
 
 # %%
 
