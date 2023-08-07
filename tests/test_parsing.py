@@ -1,5 +1,6 @@
 import os
 import pytest
+import shutil
 
 from pdbisector import parsing
 
@@ -71,11 +72,15 @@ def test_get_version_number(monkeypatch):
 
 @pytest.mark.integtest
 def test_get_version_from_install():
+    if os.path.exists("../pdbtmp"):
+        shutil.rmtree("../pdbtmp")
+    os.chdir("..")
+    os.mkdir("pdbtmp")
+    os.chdir("pdbtmp")
     print(os.getcwd())
-    assert "pandas" not in os.listdir(os.getcwd())
     os.system("git clone https://github.com/pandas-dev/pandas.git")
     os.chdir("pandas")
     os.system("git checkout v2.0.2")
-    os.chdir("")
+    os.chdir("..")
     assert parsing.get_version_number(os.path.join(os.getcwd(), "pandas")) == "v2.0.0"
-    os.rmdir("pandas")
+    shutil.rmtree("pandas")
