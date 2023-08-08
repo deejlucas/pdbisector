@@ -114,5 +114,5 @@ def test_get_version_from_install():
     os.chdir("pandas")
     os.system("git checkout v2.0.2")
     os.chdir("..")
-    assert parsing.get_version_number(os.path.join(os.getcwd(), "pandas")) == "v2.0.0"
+    assert parsing.get_version_number(os.path.join(os.getcwd(), "pandas")) == "v2.0.2"
     shutil.rmtree("pandas")

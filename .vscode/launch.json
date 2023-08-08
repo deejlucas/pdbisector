@@ -5,13 +5,42 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: DebugBisectorTests",
+            "name": "Python: Tests",
             "type": "python",
             "module": "pytest",
             "request": "launch",
             "console": "integratedTerminal",
             "justMyCode": false,
             "purpose": ["debug-test"],
+            "python": "/home/dan/miniconda3/envs/pd-bisector/bin/python"
+        },
+        {
+            "name": "Python: File",
+            "type": "python",
+            "program":"${file}",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/home/dan/miniconda3/envs/pd-bisector/bin/python"
+        },
+        {
+            "name": "Python: Main",
+            "type": "python",
+            "program":"/media/dan/storage0/pdbisector/pdbisector/main.py",
+            "args": ["old", "v2.0.0", "new", "v2.0.3", "/media/dan/storage0/pd-sums-bisect/t.py", "0"],
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/home/dan/miniconda3/envs/pd-bisector/bin/python"
+        },
+        {
+            "name": "Python: Main Re-clone",
+            "type": "python",
+            "program":"/media/dan/storage0/pdbisector/pdbisector/main.py",
+            "args": ["old", "v2.0.0", "new", "v2.0.3", "/media/dan/storage0/pd-sums-bisect/t.py", "1"],
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
             "python": "/home/dan/miniconda3/envs/pd-bisector/bin/python"
         }
     ]

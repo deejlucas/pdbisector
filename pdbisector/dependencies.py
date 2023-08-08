@@ -15,13 +15,12 @@ def install_pre_build_dependencies(install_path):
     before building, which must be done before the editable install, which is a
     requirement for installing some of the dev requirements.
     """
-    with open(os.path.join((install_path, 'requirements-dev.txt'))) as fd:
+    with open(os.path.join(install_path, 'requirements-dev.txt'), "r") as fd:
         cython_rqt = None
         np_rqt = None
         for line in fd:
             if 'versioneer' in line:
                 has_versioneer = True
-                versioneer_rqt = line
             elif "cython" in line and "pytest" not in line:
                 cython_rqt = select_single_version(line)
             elif "numpy" in line and "doc" not in line:
