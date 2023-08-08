@@ -1,6 +1,6 @@
 import sys
 
-from . import dependencies
+from pdbisector import dependencies
 
 def main(install_path):
     version = dependencies.install_pre_build_dependencies(install_path)
