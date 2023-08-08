@@ -2,8 +2,6 @@ import os
 
 from . import parsing, utils
 
-has_versioneer = False
-
 def select_single_version(rqt):
     rqt = rqt.split(",")[0]
     rqt = rqt.replace(">=", "==")
@@ -15,8 +13,8 @@ def install_pre_build_dependencies(install_path):
     before building, which must be done before the editable install, which is a
     requirement for installing some of the dev requirements.
     """
+    has_versioneer = False
     with open(os.path.join(install_path, 'requirements-dev.txt'), "r") as fd:
-        has_versioneer = False
         cython_rqt = None
         np_rqt = None
         for line in fd:
