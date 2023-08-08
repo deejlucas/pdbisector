@@ -12,7 +12,11 @@ def make_shell_script(install_path, py_path, tmp_dir):
     VERSION=$(cat version.txt)
     python3 {mod_path}/iteration_install.py {install_path}
 
-    python3 setup.py build_ext -j 1
+    if [[ "$VERSION" < "v1.0.5" ]]; then
+        python setup.py build_ext --inplace --force -j 1
+    else
+        python3 setup.py build_ext -j 1 
+    fi
 
     # Check version and decide the install command
     if [[ "$VERSION" < "v2.0.3" ]]; then
