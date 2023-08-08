@@ -16,6 +16,7 @@ def install_pre_build_dependencies(install_path):
     requirement for installing some of the dev requirements.
     """
     with open(os.path.join(install_path, 'requirements-dev.txt'), "r") as fd:
+        has_versioneer = False
         cython_rqt = None
         np_rqt = None
         for line in fd:
