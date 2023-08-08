@@ -3,13 +3,15 @@
 # need to use different pip install command when v > 2.0.3
 # need relatively recent pip for v > 2.0.3
 # TODO: Should I use a mamba environment?
+import logging
 import sys
 import os
 import subprocess
-import logging
 import shutil
 
 from pdbisector import bisect, dependencies, utils
+
+logging.basicConfig(level=logging.INFO)
 
 term_old = sys.argv[1]
 old = sys.argv[2] # where script exits 0
