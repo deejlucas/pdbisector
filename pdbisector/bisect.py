@@ -8,8 +8,8 @@ def make_shell_script(install_path, py_path, tmp_dir):
     #!/bin/bash
 
     # Get version from Python script
-    VERSION=$(python3 {mod_path}/get_version.py {install_path})
-
+    python3 {mod_path}/get_version.py {install_path}
+    VERSION=$(cat version.txt)
     python3 {mod_path}/iteration_install.py {install_path}
 
     python3 setup.py build_ext -j 1
@@ -19,6 +19,7 @@ def make_shell_script(install_path, py_path, tmp_dir):
         pip install -e . --no-build-isolation --no-use-pep517
     else
         python -m pip install -ve . --no-build-isolation --config-settings editable-verbose=true
+    fi
 
     python3 {py_path}
     """
